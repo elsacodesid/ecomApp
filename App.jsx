@@ -8,6 +8,8 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 
+
+
 const Tab = createBottomTabNavigator();
 function Home() {
   return (
@@ -23,13 +25,14 @@ const App = () => {
         screenOptions={{
           headerShown: false,
           tabBarShowLabel: false,
+          tabBarActiveTintColor: '#E96E6E',
         }}>
         <Tab.Screen
           name="HOME"
           component={HomeScreen}
           options={{
             tabBarIcon: ({size, focused, color}) => {
-              return <Entypo name={'home'} size={size} color={color} />;
+              return <Entypo name={'home'} size={25} color={color} />;
             },
           }}
         />
@@ -38,9 +41,7 @@ const App = () => {
           component={Home}
           options={{
             tabBarIcon: (size, color) => {
-              return (
-                <MaterialIcons name={'reorder'} size={size} color={color} />
-              );
+              return <MaterialIcons name={'reorder'} size={25} color={color} />;
             },
           }}
         />
@@ -50,11 +51,7 @@ const App = () => {
           options={{
             tabBarIcon: (size, color) => {
               return (
-                <MaterialCommunityIcons
-                  name={'cart'}
-                  size={size}
-                  color={color}
-                />
+                <MaterialCommunityIcons name={'cart'} size={25} color={color} />
               );
             },
           }}
@@ -64,7 +61,7 @@ const App = () => {
           component={Home}
           options={{
             tabBarIcon: (size, color) => {
-              return <FontAwesome6 name={'user'} size={size} color={color} />;
+              return <FontAwesome6 name={'user'} size={25} color={color} />;
             },
           }}
         />
