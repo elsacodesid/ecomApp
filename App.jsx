@@ -22,33 +22,52 @@ const App = () => {
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
-          tabBarShowLabel: false
+          tabBarShowLabel: false,
         }}>
         <Tab.Screen
           name="HOME"
           component={HomeScreen}
           options={{
             tabBarIcon: ({size, focused, color}) => {
-              return <Entypo name={'home'} size={25} color={color} />;
+              return <Entypo name={'home'} size={size} color={color} />;
             },
-      
           }}
         />
-        <Tab.Screen name="REORDER" component={Home} options={{
-          tabBarIcon: (size, color) =>{
-            return <MaterialIcons name={'reorder'} size={25} color={color} />;
-          }
-        }}/>
-        <Tab.Screen name="CART" component={Home} options={{
-          tabBarIcon: (size, color) =>{
-            return <MaterialCommunityIcons name={'cart'} size={25} color={color} />;
-          }
-        }} />
-        <Tab.Screen name="ACCOUNT" component={Home} options={{
-          tabBarIcon: (size, color) =>{
-            return <FontAwesome6 name={'user'} size={25} color={color} />;
-          }
-        }} />
+        <Tab.Screen
+          name="REORDER"
+          component={Home}
+          options={{
+            tabBarIcon: (size, color) => {
+              return (
+                <MaterialIcons name={'reorder'} size={size} color={color} />
+              );
+            },
+          }}
+        />
+        <Tab.Screen
+          name="CART"
+          component={Home}
+          options={{
+            tabBarIcon: (size, color) => {
+              return (
+                <MaterialCommunityIcons
+                  name={'cart'}
+                  size={size}
+                  color={color}
+                />
+              );
+            },
+          }}
+        />
+        <Tab.Screen
+          name="ACCOUNT"
+          component={Home}
+          options={{
+            tabBarIcon: (size, color) => {
+              return <FontAwesome6 name={'user'} size={size} color={color} />;
+            },
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
