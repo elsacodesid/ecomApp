@@ -15,7 +15,7 @@ const HomeScreen = () => {
         <View style={styles.iconContainer}>
           <Fontisto name={'search'} size={26} color={'#c0c0c0'} />
         </View>
-        <TextInput style={styles.textInput}></TextInput>
+        <TextInput style={styles.textInput} placeholder='Search'></TextInput>
       </View>
     </LinearGradient>
   );
@@ -38,9 +38,10 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     alignItems: 'center',
     flexDirection: 'row',
+    marginVertical: 20
   },
   iconContainer: {
-    marginHorizontal: 20,
+    marginHorizontal: 15,
   },
   textInput: {
     flex: 1,
