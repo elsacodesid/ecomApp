@@ -6,6 +6,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Header from '../components/Header';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Category from '../components/Category';
+import ProductCard from '../components/ProductCard';
 
 const categories = ["Trending Now", "All", "New", "Men's", "Women's"]
 const HomeScreen = () => {
@@ -29,7 +30,11 @@ const HomeScreen = () => {
       horizontal={true}
       showsHorizontalScrollIndicator={false}
       />
-    
+      {/* Product list */}
+    <View>
+      <ProductCard />
+      <ProductCard />
+    </View>
     </LinearGradient>
   );
 };
@@ -38,7 +43,8 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    padding: 20
+  
   },
   matchText: {
     fontSize: 28,
