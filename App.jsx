@@ -3,6 +3,10 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import HomeScreen from './src/SCREEN/HomeScreen';
+import Entypo from 'react-native-vector-icons/Entypo';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 
 const Tab = createBottomTabNavigator();
 function Home() {
@@ -15,11 +19,36 @@ function Home() {
 const App = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="HOME" component={HomeScreen} />
-        <Tab.Screen name="REORDER" component={Home} />
-        <Tab.Screen name="CART" component={Home} />
-        <Tab.Screen name="ACCOUNT" component={Home} />
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarShowLabel: false
+        }}>
+        <Tab.Screen
+          name="HOME"
+          component={HomeScreen}
+          options={{
+            tabBarIcon: ({size, focused, color}) => {
+              return <Entypo name={'home'} size={25} color={color} />;
+            },
+      
+          }}
+        />
+        <Tab.Screen name="REORDER" component={Home} options={{
+          tabBarIcon: (size, color) =>{
+            return <MaterialIcons name={'reorder'} size={25} color={color} />;
+          }
+        }}/>
+        <Tab.Screen name="CART" component={Home} options={{
+          tabBarIcon: (size, color) =>{
+            return <MaterialCommunityIcons name={'cart'} size={25} color={color} />;
+          }
+        }} />
+        <Tab.Screen name="ACCOUNT" component={Home} options={{
+          tabBarIcon: (size, color) =>{
+            return <FontAwesome6 name={'user'} size={25} color={color} />;
+          }
+        }} />
       </Tab.Navigator>
     </NavigationContainer>
   );
