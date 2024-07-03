@@ -31,7 +31,9 @@ const HomeScreen = () => {
       showsHorizontalScrollIndicator={false}
       />
       {/* Product list */}
-    <View>
+    <View style={{
+      flexDirection: "row"
+    }}>
       <ProductCard />
       <ProductCard />
     </View>
