@@ -8,6 +8,8 @@ const ProductCard = () => {
         source={require('../assets/model1.png')}
         style={styles.coverImage}
       />
+      <Text style={styles.title}>Title</Text>
+      <Text style={styles.price}>$19.99</Text>
     </View>
   );
 };
@@ -30,4 +32,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginVertical: 10,
   },
+  title: {
+    fontSize: 18,
+    color: "#4444444",
+    fontWeight: "600"
+  },
+  price: {
+    fontSize: 18,
+    color: "#9C9C9C",
+    fontWeight: "600"
+  }
 });
