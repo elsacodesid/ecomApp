@@ -9,6 +9,7 @@ import Category from '../components/Category';
 import ProductCard from '../components/ProductCard';
 
 const categories = ["Trending Now", "All", "New", "Men's", "Women's"]
+const products = [1, 2, 3, 4];
 const HomeScreen = () => {
   const [selectedCategory, setSelectedCategory] = useState(null)
   return (
@@ -31,13 +32,18 @@ const HomeScreen = () => {
       showsHorizontalScrollIndicator={false}
       />
       {/* Product list */}
-    <View style={{
-      flexDirection: "row"
-    }}>
-      <ProductCard />
-      <ProductCard />
-    </View>
+     <FlatList
+     data={products}
+     renderItem={() => <ProductCard />}
+     keyExtractor={(item) => item.toString()}
+     numColumns={2}
+     columnWrapperStyle={styles.row}
+     contentContainerStyle={styles.productList}
+   />
+
+    
     </LinearGradient>
+    
   );
 };
 
@@ -66,5 +72,11 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
+  },
+  productList: {
+    marginTop: 10,
+  },
+  row: {
+    justifyContent: 'space-between',
   },
 });
