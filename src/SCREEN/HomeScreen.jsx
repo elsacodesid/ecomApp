@@ -7,10 +7,12 @@ import Header from '../components/Header';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Category from '../components/Category';
 import ProductCard from '../components/ProductCard';
+import data from "../data/data.json"
 
 const categories = ['Trending Now', 'All', 'New', "Men's", "Women's"];
-const products = [1, 2, 3, 4, 5, 6];
+
 const HomeScreen = () => {
+  const [products, setProducts] = useState(data.products)
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
   return (
@@ -46,14 +48,11 @@ const HomeScreen = () => {
         renderItem={({item, index}) => (
           <ProductCard item={item} isLiked={isLiked} setIsLiked={setIsLiked} />
         )}
-        keyExtractor={item => item.toString()}
+        keyExtractor={item => item.id.toString()}
         numColumns={2}
         columnWrapperStyle={styles.row}
         contentContainerStyle={styles.productList}
         showsVerticalScrollIndicator={false}
-      
-
-     
       />
     </LinearGradient>
   );
@@ -91,7 +90,7 @@ const styles = StyleSheet.create({
   },
   productList: {
     marginTop: 10,
-    paddingBottom: 50
+    paddingBottom: 50,
   },
   row: {
     justifyContent: 'space-between',
