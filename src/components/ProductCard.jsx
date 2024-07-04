@@ -2,8 +2,8 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
-const ProductCard = () => {
-  const isLiked = true
+const ProductCard = ({isLiked, setIsLiked}) => {
+  // const isLiked = true
   // const [isLiked, setIsLiked] = useState(false);
   return (
     <View style={styles.container}>
@@ -17,7 +17,7 @@ const ProductCard = () => {
       </View>
 
       <TouchableOpacity
-        onPress={() =>{}}
+        onPress={() =>{setIsLiked(!isLiked)}}
         style={styles.heartContainer}>
         {isLiked ? (
           <AntDesign name={'heart'} size={20} color={'#E55B5B'} />

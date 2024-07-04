@@ -1,5 +1,5 @@
 import {FlatList, StyleSheet, Text, TextInput, View} from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import LinearGradient from 'react-native-linear-gradient';
@@ -8,10 +8,11 @@ import Fontisto from 'react-native-vector-icons/Fontisto';
 import Category from '../components/Category';
 import ProductCard from '../components/ProductCard';
 
-const categories = ["Trending Now", "All", "New", "Men's", "Women's"]
+const categories = ['Trending Now', 'All', 'New', "Men's", "Women's"];
 const products = [1, 2, 3, 4];
 const HomeScreen = () => {
-  const [selectedCategory, setSelectedCategory] = useState(null)
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [isLiked, setIsLiked] = useState(false);
   return (
     <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
       <Header />
@@ -24,27 +25,34 @@ const HomeScreen = () => {
         <TextInput style={styles.textInput} placeholder="Search"></TextInput>
       </View>
       {/* Category Section */}
-      <FlatList 
-      data={categories} 
-      renderItem={({item}) => <Category item={item} selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />} 
-      keyExtractor={(item) => item}
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
+      <FlatList
+        style={styles.categories}
+        data={categories}
+        renderItem={({item}) => (
+          <Category
+            item={item}
+            selectedCategory={selectedCategory}
+            setSelectedCategory={setSelectedCategory}
+          />
+        )}
+        keyExtractor={item => item}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
       />
-      {/* Product list */}
-     <FlatList
-     data={products}
-     renderItem={() => <ProductCard />}
-     keyExtractor={(item) => item.toString()}
-     numColumns={2}
-     columnWrapperStyle={styles.row}
-     contentContainerStyle={styles.productList}
-     showsVerticalScrollIndicator={false}
-   />
 
-    
+      {/* Product list */}
+      <FlatList
+        data={products}
+        renderItem={({item, index}) => (
+          <ProductCard item={item} isLiked={isLiked} setIsLiked={setIsLiked} />
+        )}
+        keyExtractor={item => item.toString()}
+        numColumns={2}
+        columnWrapperStyle={styles.row}
+        contentContainerStyle={styles.productList}
+        showsVerticalScrollIndicator={false}
+      />
     </LinearGradient>
-    
   );
 };
 
@@ -52,8 +60,12 @@ export default HomeScreen;
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20
-  
+    flex: 1,
+    padding: 20,
+  },
+  categories: {
+    flexDirection: 'row',
+    height: 80,
   },
   matchText: {
     fontSize: 28,
