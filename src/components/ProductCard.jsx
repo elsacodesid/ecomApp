@@ -1,7 +1,10 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {useState} from 'react';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const ProductCard = () => {
+  const isLiked = true
+  // const [isLiked, setIsLiked] = useState(false);
   return (
     <View style={styles.container}>
       <Image
@@ -12,6 +15,16 @@ const ProductCard = () => {
         <Text style={styles.title}>Title</Text>
         <Text style={styles.price}>$19.99</Text>
       </View>
+
+      <TouchableOpacity
+        onPress={() =>{}}
+        style={styles.heartContainer}>
+        {isLiked ? (
+          <AntDesign name={'heart'} size={20} color={'#E55B5B'} />
+        ) : (
+          <AntDesign name={'hearto'} size={20} color={'#E55B5B'} />
+        )}
+      </TouchableOpacity>
     </View>
   );
 };
@@ -22,8 +35,8 @@ const styles = StyleSheet.create({
   container: {
     width: '45%',
     marginTop: 10,
-    marginHorizontal: '2.5%'
-
+    marginHorizontal: '2.5%',
+    position: 'relative',
   },
   coverImage: {
     height: 256,
@@ -44,5 +57,16 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingLeft: 5,
+  },
+  heartContainer: {
+    height: 34,
+    width: 34,
+    backgroundColor: '#ffffff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 17,
+    position: 'absolute',
+    top: 15,
+    right: 8,
   },
 });
