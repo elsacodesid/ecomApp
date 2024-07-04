@@ -9,7 +9,7 @@ import Category from '../components/Category';
 import ProductCard from '../components/ProductCard';
 
 const categories = ['Trending Now', 'All', 'New', "Men's", "Women's"];
-const products = [1, 2, 3, 4];
+const products = [1, 2, 3, 4, 5, 6];
 const HomeScreen = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
@@ -51,6 +51,9 @@ const HomeScreen = () => {
         columnWrapperStyle={styles.row}
         contentContainerStyle={styles.productList}
         showsVerticalScrollIndicator={false}
+      
+
+     
       />
     </LinearGradient>
   );
@@ -88,6 +91,7 @@ const styles = StyleSheet.create({
   },
   productList: {
     marginTop: 10,
+    paddingBottom: 50
   },
   row: {
     justifyContent: 'space-between',
