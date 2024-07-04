@@ -39,6 +39,7 @@ const HomeScreen = () => {
      numColumns={2}
      columnWrapperStyle={styles.row}
      contentContainerStyle={styles.productList}
+     showsVerticalScrollIndicator={false}
    />
 
     
