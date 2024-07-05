@@ -7,16 +7,27 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import ProductDetailsScreen from './src/SCREEN/ProductDetailsScreen';
 
 
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator()
 function Home() {
   return (
     <View>
       <Text>Home</Text>
     </View>
   );
+}
+const MyHomeStack = () => {
+return (
+  <Stack.Navigator>
+    <Stack.Screen name="HOME" component={HomeScreen} />
+    <Stack.Screen name="PRODUCT_DETAILS" component={ProductDetailsScreen} />
+  </Stack.Navigator>
+)
 }
 const App = () => {
   return (
@@ -28,8 +39,8 @@ const App = () => {
           tabBarActiveTintColor: '#E96E6E',
         }}>
         <Tab.Screen
-          name="HOME"
-          component={HomeScreen}
+          name="HOME_STACK"
+          component={MyHomeStack}
           options={{
             tabBarIcon: ({size, focused, color}) => {
               return <Entypo name={'home'} size={25} color={color} />;

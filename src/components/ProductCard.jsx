@@ -1,12 +1,17 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useNavigation } from '@react-navigation/core';
 
-const ProductCard = ({item, isLiked, setIsLiked}) => {
+
+const ProductCard = ({item, handleLiked }) => {
   // const isLiked = true
   // const [isLiked, setIsLiked] = useState(false);
+  const navigation  = useNavigation()
   return (
-    <View style={styles.container}>
+    <TouchableOpacity onPress={()=> {
+      navigation.navigate("PRODUCT_DETAILS")
+    }} style={styles.container}>
       <Image
         source={{uri:item.image}}
         style={styles.coverImage}
@@ -17,15 +22,15 @@ const ProductCard = ({item, isLiked, setIsLiked}) => {
       </View>
 
       <TouchableOpacity
-        onPress={() =>{setIsLiked(!isLiked)}}
+        onPress={() =>{handleLiked(item)}}
         style={styles.heartContainer}>
-        {isLiked ? (
+        {item?.isLiked ? (
           <AntDesign name={'heart'} size={20} color={'#E55B5B'} />
         ) : (
           <AntDesign name={'hearto'} size={20} color={'#E55B5B'} />
         )}
       </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   );
 };
 

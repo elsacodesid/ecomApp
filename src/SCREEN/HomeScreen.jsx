@@ -1,20 +1,31 @@
 import {FlatList, StyleSheet, Text, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import LinearGradient from 'react-native-linear-gradient';
 import Header from '../components/Header';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Category from '../components/Category';
 import ProductCard from '../components/ProductCard';
-import data from "../data/data.json"
+import data from '../data/data.json';
 
 const categories = ['Trending Now', 'All', 'New', "Men's", "Women's"];
 
 const HomeScreen = () => {
-  const [products, setProducts] = useState(data.products)
+  const [products, setProducts] = useState(data.products);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [isLiked, setIsLiked] = useState(false);
+
+  const handleLiked = item => {
+    const likedProducts = products.map(prod => {
+      if (prod.id === item.id) {
+        return {
+          ...prod,
+          isLiked: true
+        };
+      }
+      return prod;
+    });
+    setProducts(likedProducts);
+  };
   return (
     <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
       <Header />
@@ -46,7 +57,7 @@ const HomeScreen = () => {
       <FlatList
         data={products}
         renderItem={({item, index}) => (
-          <ProductCard item={item} isLiked={isLiked} setIsLiked={setIsLiked} />
+          <ProductCard item={item} handleLiked={handleLiked} />
         )}
         keyExtractor={item => item.id.toString()}
         numColumns={2}
