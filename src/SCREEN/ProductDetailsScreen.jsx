@@ -6,15 +6,24 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Header from '../components/Header';
 const imageUrl =
   'https://res.cloudinary.com/dlc5c1ycl/image/upload/v1710567613/cwlk21f74nd9iamrlzkh.png';
 
 const sizes = ['S', 'M', 'L', 'XL'];
+const colors = [
+  '#91A1B0',
+  '#811D1D',
+  '#1F44A3',
+  '#9F632A',
+  '#1D752B',
+  '#000000',
+];
 
 const ProductDetailsScreen = () => {
+  const [selectedSize, setSelectedSize] = useState(null);
   return (
     <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -32,9 +41,27 @@ const ProductDetailsScreen = () => {
         <View style={styles.sizeContainer}>
           {sizes.map(size => {
             return (
-              <TouchableOpacity style={styles.sizeValueContainer}>
-                <Text style={styles.sizeValue}>{size}</Text>
+              <TouchableOpacity
+                onPress={() => setSelectedSize(size)}
+                style={styles.sizeValueContainer}>
+                <Text
+                  style={[
+                    styles.sizeValue,
+                    selectedSize == size && {color: '#E55B5B'},
+                  ]}>
+                  {size}
+                </Text>
               </TouchableOpacity>
+            );
+          })}
+        </View>
+        <Text style={[styles.title, styles.colorText]}>Color</Text>
+        <View style={styles.colorContainer}>
+          {colors.map(color => {
+            return (
+              <View style={styles.circleBorder}>
+                <View style={[styles.circle, {backgroundColor: color}]} />
+              </View>
             );
           })}
         </View>
@@ -86,12 +113,37 @@ const styles = StyleSheet.create({
     width: 36,
     borderRadius: 18,
     backgroundColor: '#ffffff',
-    justifyContent: "center",
-    alignItems: "center",
-    marginHorizontal: 10
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 10,
   },
   sizeValue: {
     fontSize: 18,
-    fontWeight: "600"
+    fontWeight: '600',
+  },
+  colorText: {
+    marginHorizontal: 20,
+    marginTop: 10,
+  },
+  colorContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+
+    marginHorizontal: 10,
+  },
+  circle: {
+    height: 36,
+    width: 36,
+    borderRadius: 20,
+
+  },
+  circleBorder: {
+    borderWidth: 2,
+    justifyContent: "center",
+    alignItems: 'center',
+    height: 48,
+    width: 48,
+    borderRadius: 24,
+    marginHorizontal: 5
   },
 });
