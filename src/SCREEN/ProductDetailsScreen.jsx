@@ -24,6 +24,7 @@ const colors = [
 
 const ProductDetailsScreen = () => {
   const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
   return (
     <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -59,9 +60,17 @@ const ProductDetailsScreen = () => {
         <View style={styles.colorContainer}>
           {colors.map(color => {
             return (
-              <View style={styles.circleBorder}>
+              <TouchableOpacity
+                onPress={() => setSelectedColor(color)}
+                style={[
+                  styles.circleBorder,
+                  selectedColor == color && {
+                    borderColor: color,
+                    borderWidth: 2,
+                  },
+                ]}>
                 <View style={[styles.circle, {backgroundColor: color}]} />
-              </View>
+              </TouchableOpacity>
             );
           })}
         </View>
@@ -135,15 +144,13 @@ const styles = StyleSheet.create({
     height: 36,
     width: 36,
     borderRadius: 20,
-
   },
   circleBorder: {
-    borderWidth: 2,
-    justifyContent: "center",
+    justifyContent: 'center',
     alignItems: 'center',
     height: 48,
     width: 48,
     borderRadius: 24,
-    marginHorizontal: 5
+    marginHorizontal: 5,
   },
 });
