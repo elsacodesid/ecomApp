@@ -9,6 +9,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ProductDetailsScreen from './src/SCREEN/ProductDetailsScreen';
+import CartScreen from './src/SCREEN/CartScreen';
 
 
 
@@ -39,7 +40,10 @@ const App = () => {
           headerShown: false,
           tabBarShowLabel: false,
           tabBarActiveTintColor: '#E96E6E',
-        }}>
+          
+        }}
+        initialRouteName= "CART"
+        >
         <Tab.Screen
           name="HOME_STACK"
           component={MyHomeStack}
@@ -60,7 +64,7 @@ const App = () => {
         />
         <Tab.Screen
           name="CART"
-          component={Home}
+          component={CartScreen}
           options={{
             tabBarIcon: (size, color) => {
               return (
