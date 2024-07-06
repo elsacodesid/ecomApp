@@ -9,6 +9,7 @@ import {
 import React, {useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Header from '../components/Header';
+import { useRoute } from '@react-navigation/core';
 const imageUrl =
   'https://res.cloudinary.com/dlc5c1ycl/image/upload/v1710567613/cwlk21f74nd9iamrlzkh.png';
 
@@ -23,18 +24,21 @@ const colors = [
 ];
 
 const ProductDetailsScreen = () => {
+  const route = useRoute()
+  const item = route.params.item
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
+ 
   return (
     <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.headerContainer}>
           <Header />
         </View>
-        <Image source={{uri: imageUrl}} style={styles.coverImage} />
+        <Image source={{uri: item.image}} style={styles.coverImage} />
         <View style={styles.contentContainer}>
-          <Text style={styles.title}>Winter Coat</Text>
-          <Text style={[styles.title, styles.price]}>$69.99</Text>
+          <Text style={styles.title}>{item.title}</Text>
+          <Text style={[styles.title, styles.price]}>${item.price}</Text>
         </View>
         {/* size container */}
 
