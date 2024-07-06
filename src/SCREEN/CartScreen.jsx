@@ -11,7 +11,8 @@ const CartScreen = ({}) => {
     <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
         <View style={styles.headerContainer}><Header isCart={true} /></View>
         <CartCard />
-      {/* <Text>CartScreen</Text> */}
+        <CartCard />
+   
     </LinearGradient>
   )
 }
