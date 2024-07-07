@@ -1,4 +1,4 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Header from '../components/Header';
@@ -10,26 +10,43 @@ const CartScreen = ({}) => {
       <View style={styles.headerContainer}>
         <Header isCart={true} />
       </View>
-      <CartCard />
-      <CartCard />
-      <View style={styles.priceContainer}>
-        <View style={styles.priceAndTitle}>
-          <Text style={styles.text}>Total:</Text>
-          <Text style={styles.text}>$00.00</Text>
-        </View>
-        <View style={styles.priceAndTitle}>
-          <Text style={styles.text}>Shipping:</Text>
-          <Text style={styles.text}>$00.00</Text>
-        </View>
-      </View>
-      <View style={styles.divider} />
-      <View style={styles.priceAndTitle}>
-        <Text style={styles.text}>Grand Total:</Text>
-        <Text style={[styles.text, {color:"black"}, {fontWeight: "700"}]}>$00.00</Text>
-      </View>
+
+      <FlatList
+        data={[1, 2, 3, 4, 5, 6]}
+    
+        renderItem={CartCard}
+        ListFooterComponent={
+          <>
+            <View style={styles.priceContainer}>
+              <View style={styles.priceAndTitle}>
+                <Text style={styles.text}>Total:</Text>
+                <Text style={styles.text}>$00.00</Text>
+              </View>
+              <View style={styles.priceAndTitle}>
+                <Text style={styles.text}>Shipping:</Text>
+                <Text style={styles.text}>$00.00</Text>
+              </View>
+            </View>
+            <View style={styles.divider} />
+            <View style={styles.priceAndTitle}>
+              <Text style={styles.text}>Grand Total:</Text>
+              <Text
+                style={[styles.text, {color: 'black'}, {fontWeight: '700'}]}>
+                $00.00
+              </Text>
+            </View>
+          </>
+
+        }
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{
+          paddingBottom: 10
+        }}
+      />
+
       <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Checkout</Text>
-        </TouchableOpacity>
+        <Text style={styles.buttonText}>Checkout</Text>
+      </TouchableOpacity>
     </LinearGradient>
   );
 };
@@ -64,7 +81,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#E96E6E',
-    alignItems: "center",
+    alignItems: 'center',
     padding: 10,
     margin: 10,
     borderRadius: 20,
@@ -72,6 +89,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 24,
     fontWeight: '600',
-    color: '#ffffff'
-  }
+    color: '#ffffff',
+  },
 });
