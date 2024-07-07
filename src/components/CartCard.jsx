@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   coverImage: {
     height: 125,
     width: 94,
-    borderRadius: '10%',
+    borderRadius: 20,
   },
   cardContent: {
     flex: 1,
