@@ -6,7 +6,7 @@ import CartCard from '../components/CartCard';
 import { CartContext } from '../context/CartContext';
 
 const CartScreen = ({}) => {
-  const {cart} = useContext(CartContext)
+  const {cart, totalPrice, deleteItem} = useContext(CartContext)
   return (
     <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
       <View style={styles.headerContainer}>
@@ -16,13 +16,13 @@ const CartScreen = ({}) => {
       <FlatList
         data={cart}
     
-        renderItem={CartCard}
+        renderItem={({item}) => <CartCard item={item} deleteItem={deleteItem}/>}
         ListFooterComponent={
           <>
             <View style={styles.priceContainer}>
               <View style={styles.priceAndTitle}>
                 <Text style={styles.text}>Total:</Text>
-                <Text style={styles.text}>$00.00</Text>
+                <Text style={styles.text}>${totalPrice}</Text>
               </View>
               <View style={styles.priceAndTitle}>
                 <Text style={styles.text}>Shipping:</Text>
@@ -34,7 +34,7 @@ const CartScreen = ({}) => {
               <Text style={styles.text}>Grand Total:</Text>
               <Text
                 style={[styles.text, {color: 'black'}, {fontWeight: '700'}]}>
-                $00.00
+                ${totalPrice}
               </Text>
             </View>
           </>
