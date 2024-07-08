@@ -54,9 +54,10 @@ const ProductDetailsScreen = () => {
 
         <Text style={[styles.title, styles.sizeText]}>Size</Text>
         <View style={styles.sizeContainer}>
-          {sizes.map(size => {
+          {sizes.map((size, sizeIndex) => {
             return (
               <TouchableOpacity
+              key={sizeIndex}
                 onPress={() => setSelectedSize(size)}
                 style={styles.sizeValueContainer}>
                 <Text
@@ -72,9 +73,10 @@ const ProductDetailsScreen = () => {
         </View>
         <Text style={[styles.title, styles.colorText]}>Color</Text>
         <View style={styles.colorContainer}>
-          {colors.map(color => {
+          {colors.map((color, colorIndex) => {
             return (
               <TouchableOpacity
+              key={colorIndex}
                 onPress={() => setSelectedColor(color)}
                 style={[
                   styles.circleBorder,

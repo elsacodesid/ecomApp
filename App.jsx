@@ -39,7 +39,7 @@ const App = () => {
             tabBarShowLabel: false,
             tabBarActiveTintColor: '#E96E6E',
           }}
-          initialRouteName="CART">
+          initialRouteName="">
           <Tab.Screen
             name="HOME_STACK"
             component={MyHomeStack}
