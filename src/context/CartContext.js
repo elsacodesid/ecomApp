@@ -1,14 +1,33 @@
-import {createContext, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {createContext, useEffect, useState} from 'react';
 
 export const CartContext = createContext();
 
 export const CartProvider = ({children}) => {
   const [cart, setCart] = useState([]);
 
-  const addToCart = item => {
+  useEffect(() => {
+    loadCartItems();
+  }, []);
+  
+  const loadCartItems = async () => {
+    try {
+      const currentCart = await AsyncStorage.getItem('cart');
+      if (currentCart) {
+        setCart(JSON.parse(currentCart));
+      }
+    } catch (error) {
+      console.error('Error loading cart items:', error);
+    }
+  };
+
+  const addToCart = async item => {
     const itemExists = cart.findIndex(prod => prod.id === item.id);
+
     if (itemExists === -1) {
-      setCart([...cart, item]);
+      const newCartItems = [...cart, item];
+      await AsyncStorage.setItem('cart', JSON.stringify(newCartItems));
+      setCart(newCartItems);
     }
   };
 

@@ -1,12 +1,11 @@
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
-const image =
-  'https://res.cloudinary.com/dlc5c1ycl/image/upload/v1710567612/qichw3wrcioebkvzudib.png';
+
 const CartCard = ({item}) => {
   return (
     <View style={styles.container}>
-      <Image source={{uri: image}} style={styles.coverImage} />
+      <Image source={{uri: item.image}} style={styles.coverImage} />
       <View style={styles.cardContent}>
         <Text style={styles.title}>{item.title}</Text>
         <Text style={styles.price}>{item.price}</Text>
