@@ -6,10 +6,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import Header from '../components/Header';
-import { useRoute } from '@react-navigation/core';
+import {useNavigation, useRoute} from '@react-navigation/core';
+import {CartContext} from '../context/CartContext';
 const imageUrl =
   'https://res.cloudinary.com/dlc5c1ycl/image/upload/v1710567613/cwlk21f74nd9iamrlzkh.png';
 
@@ -24,11 +25,20 @@ const colors = [
 ];
 
 const ProductDetailsScreen = () => {
-  const route = useRoute()
-  const item = route.params.item
+  const navigation = useNavigation()
+  const {addToCart} = useContext(CartContext);
+  const route = useRoute();
+  const item = route.params.item;
   const [selectedSize, setSelectedSize] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
- 
+
+  const handleAddToCart = (item) => {
+    item.size = selectedSize;
+    item.color = selectedColor;
+    addToCart(item);
+    navigation.navigate("CART")
+  };
+
   return (
     <LinearGradient colors={['#FDF0F3', '#FFFBFC']} style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
@@ -79,7 +89,9 @@ const ProductDetailsScreen = () => {
           })}
         </View>
         {/* button container */}
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity
+          onPress={() => handleAddToCart(item)}
+          style={styles.button}>
           <Text style={styles.buttonText}>Add to Cart</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -163,7 +175,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#E96E6E',
-    alignItems: "center",
+    alignItems: 'center',
     padding: 10,
     margin: 10,
     borderRadius: 20,
@@ -171,6 +183,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 24,
     fontWeight: '600',
-    color: '#ffffff'
+    color: '#ffffff',
   },
 });
